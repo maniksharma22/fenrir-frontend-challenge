@@ -32,8 +32,10 @@ Shows scan progress, scan metadata, a live console with activity logs, and a fin
 
 ## Running the Project
 
+```bash
 npm install
 npm run dev
+```
 
 ## Deployment
 The project is deployed on Vercel.
