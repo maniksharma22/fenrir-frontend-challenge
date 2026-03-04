@@ -30,7 +30,7 @@ export default function ScanDetail() {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
 
         {/* Breadcrumb */}
-        <div className="flex flex-wrap items-center gap-2 text-[14px] md:text-[15px]">
+       <div className="flex items-center gap-3 text-[15px] ml-12 md:ml-0">
           <span className="font-semibold text-[#111827] dark:text-white">
             Scan
           </span>
