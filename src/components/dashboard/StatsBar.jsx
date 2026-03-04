@@ -7,7 +7,7 @@ import StatsCard from "./StatsCard"
 
 export default function StatsBar() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
 
       {/* Critical */}
       <StatsCard
@@ -45,7 +45,7 @@ export default function StatsBar() {
         iconBg="bg-[#F4EBC8]"
       />
 
-      {/* Low — Custom Magnifier With Inner Dot */}
+      {/* Low */}
       <StatsCard
         title="Low Severity"
         count="16"
@@ -63,16 +63,9 @@ export default function StatsBar() {
               strokeLinecap="round"
               strokeLinejoin="round"
             >
-              {/* Bigger outer circle */}
               <circle cx="11" cy="11" r="8" />
-
-              {/* Handle */}
               <line x1="21" y1="21" x2="16.8" y2="16.8" />
-
-              {/* Exclamation vertical */}
               <line x1="11" y1="7.5" x2="11" y2="13" />
-
-              {/* Exclamation dot */}
               <circle cx="11" cy="16" r="1.3" fill="currentColor" stroke="none" />
             </svg>
           </div>

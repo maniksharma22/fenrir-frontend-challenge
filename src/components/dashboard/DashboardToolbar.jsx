@@ -13,7 +13,7 @@ export default function DashboardToolbar({ search, setSearch }) {
       <div className="flex flex-col md:flex-row md:items-center gap-4">
 
         {/* Search */}
-        <div className="relative flex-1">
+        <div className="relative flex-1 w-full">
 
           <IconSearch
             size={18}
@@ -33,7 +33,6 @@ export default function DashboardToolbar({ search, setSearch }) {
                        focus:ring-2 focus:ring-[#0CC8A8]/20"
           />
 
-          {/* Clear icon */}
           {search && (
             <IconX
               size={16}
@@ -42,13 +41,12 @@ export default function DashboardToolbar({ search, setSearch }) {
                          cursor-pointer text-[#9CA3AF] hover:text-gray-600"
             />
           )}
-
         </div>
 
         {/* Buttons */}
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap md:flex-nowrap items-center gap-2 md:gap-3 w-full md:w-auto">
 
-          <button className="flex items-center gap-2 px-4 py-2 rounded-xl 
+          <button className="flex items-center justify-center gap-2 px-3 md:px-4 py-2 rounded-xl 
                              border border-[#E5E7EB] dark:border-[#2A2A2A]
                              bg-white dark:bg-[#1A1A1A]
                              text-[#6B7280] dark:text-gray-300
@@ -57,7 +55,7 @@ export default function DashboardToolbar({ search, setSearch }) {
             Filter
           </button>
 
-          <button className="flex items-center gap-2 px-4 py-2 rounded-xl 
+          <button className="flex items-center justify-center gap-2 px-3 md:px-4 py-2 rounded-xl 
                              border border-[#E5E7EB] dark:border-[#2A2A2A]
                              bg-white dark:bg-[#1A1A1A]
                              text-[#6B7280] dark:text-gray-300
@@ -66,7 +64,7 @@ export default function DashboardToolbar({ search, setSearch }) {
             Column
           </button>
 
-          <button className="flex items-center gap-2 px-5 py-2 rounded-xl 
+          <button className="flex items-center justify-center gap-2 px-4 md:px-5 py-2 rounded-xl 
                              bg-[#0CC8A8] text-white text-sm hover:bg-[#0BB79A]">
             <IconPlus size={16} />
             New Scan

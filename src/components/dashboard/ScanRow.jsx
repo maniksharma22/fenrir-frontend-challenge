@@ -12,24 +12,24 @@ export default function ScanRow({ scan }) {
                  transition cursor-pointer"
     >
       {/* Name */}
-      <td className="px-8 py-6 font-medium text-[#111827] dark:text-white">
+      <td className="px-4 md:px-8 py-4 md:py-6 font-medium text-[#111827] dark:text-white whitespace-nowrap">
         {scan.name}
       </td>
 
       {/* Type */}
-      <td className="px-8 py-6 text-[#6B7280] dark:text-[#9CA3AF]">
+      <td className="px-4 md:px-8 py-4 md:py-6 text-[#6B7280] dark:text-[#9CA3AF] whitespace-nowrap">
         {scan.type}
       </td>
 
       {/* Status */}
-      <td className="px-8 py-6">
+      <td className="px-4 md:px-8 py-4 md:py-6">
         <StatusChip status={scan.status} />
       </td>
 
       {/* Progress */}
-      <td className="px-8 py-6">
-        <div className="flex items-center gap-4">
-          <div className="w-32 h-2.5 bg-[#E5E7EB] dark:bg-[#2A2A2A] rounded-full">
+      <td className="px-4 md:px-8 py-4 md:py-6">
+        <div className="flex items-center gap-3 md:gap-4">
+          <div className="w-24 md:w-32 h-2.5 bg-[#E5E7EB] dark:bg-[#2A2A2A] rounded-full">
             <div
               className={`h-2.5 rounded-full ${
                 scan.status === "Failed"
@@ -40,35 +40,35 @@ export default function ScanRow({ scan }) {
             />
           </div>
 
-          <span className="text-sm font-medium text-[#374151] dark:text-[#D1D5DB]">
+          <span className="text-xs md:text-sm font-medium text-[#374151] dark:text-[#D1D5DB]">
             {scan.progress}%
           </span>
         </div>
       </td>
 
       {/* Vulnerabilities */}
-      <td className="px-8 py-6 text-center">
-        <div className="flex gap-3 justify-center">
+      <td className="px-4 md:px-8 py-4 md:py-6 text-center">
+        <div className="flex gap-2 md:gap-3 justify-center flex-wrap">
           {scan.vulnerabilities.critical > 0 && (
-            <span className="px-3 py-1 text-xs font-semibold text-white bg-red-500 rounded-md">
+            <span className="px-2 md:px-3 py-1 text-xs font-semibold text-white bg-red-500 rounded-md">
               {scan.vulnerabilities.critical}
             </span>
           )}
 
           {scan.vulnerabilities.high > 0 && (
-            <span className="px-3 py-1 text-xs font-semibold text-white bg-orange-500 rounded-md">
+            <span className="px-2 md:px-3 py-1 text-xs font-semibold text-white bg-orange-500 rounded-md">
               {scan.vulnerabilities.high}
             </span>
           )}
 
           {scan.vulnerabilities.medium > 0 && (
-            <span className="px-3 py-1 text-xs font-semibold text-white bg-yellow-500 rounded-md">
+            <span className="px-2 md:px-3 py-1 text-xs font-semibold text-white bg-yellow-500 rounded-md">
               {scan.vulnerabilities.medium}
             </span>
           )}
 
           {scan.vulnerabilities.low > 0 && (
-            <span className="px-3 py-1 text-xs font-semibold text-white bg-green-500 rounded-md">
+            <span className="px-2 md:px-3 py-1 text-xs font-semibold text-white bg-green-500 rounded-md">
               {scan.vulnerabilities.low}
             </span>
           )}
@@ -76,7 +76,7 @@ export default function ScanRow({ scan }) {
       </td>
 
       {/* Last Scan */}
-      <td className="px-8 py-6 text-[#6B7280] dark:text-[#9CA3AF]">
+      <td className="px-4 md:px-8 py-4 md:py-6 text-[#6B7280] dark:text-[#9CA3AF] whitespace-nowrap">
         {scan.lastScan}
       </td>
     </tr>

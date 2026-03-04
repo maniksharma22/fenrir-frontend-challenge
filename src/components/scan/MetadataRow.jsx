@@ -9,16 +9,21 @@ export default function MetadataRow({ scan }) {
   ]
 
   return (
-    <div className="border-t border-gray-200 pt-6 flex justify-between text-sm">
+    <div className="border-t border-gray-200 pt-6 
+                    grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 
+                    gap-4 md:gap-6 text-sm">
 
       {items.map((item, index) => (
-        <div key={index} className="flex flex-col">
+        <div key={index} className="flex flex-col min-w-0">
+
           <span className="text-gray-400">
             {item.label}
           </span>
-          <span className="text-gray-900 font-medium">
+
+          <span className="text-gray-900 dark:text-white font-medium truncate">
             {item.value}
           </span>
+
         </div>
       ))}
 

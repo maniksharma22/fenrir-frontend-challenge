@@ -4,12 +4,13 @@ export default function ConsolePanel() {
   const [activeTab, setActiveTab] = useState("activity")
 
   return (
-    <div className="h-full bg-white dark:bg-[#141414] transition-colors">
+    <div className="h-full flex flex-col bg-white dark:bg-[#141414] transition-colors">
 
       {/* Header */}
-      <div className="flex items-center justify-between px-6 py-4 
+      <div className="flex items-center justify-between px-4 md:px-6 py-4 
                       border-b border-gray-200 dark:border-[#2A2A2A]">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 flex-wrap">
+
           <span className="w-2 h-2 bg-[#00C2A8] rounded-full"></span>
 
           <span className="text-sm font-semibold text-gray-900 dark:text-white">
@@ -32,40 +33,46 @@ export default function ConsolePanel() {
             </svg>
             Running...
           </span>
+
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-8 px-6 
+      <div className="flex gap-6 md:gap-8 px-4 md:px-6 
                       border-b border-gray-200 dark:border-[#2A2A2A] 
-                      text-sm">
+                      text-sm overflow-x-auto">
+
         <button
           onClick={() => setActiveTab("activity")}
-          className={`py-4 ${activeTab === "activity"
-            ? "text-[#00C2A8] border-b-2 border-[#00C2A8]"
-            : "text-gray-400"
-            }`}
+          className={`py-4 whitespace-nowrap ${
+            activeTab === "activity"
+              ? "text-[#00C2A8] border-b-2 border-[#00C2A8]"
+              : "text-gray-400"
+          }`}
         >
           Activity Log
         </button>
 
         <button
           onClick={() => setActiveTab("verification")}
-          className={`py-4 ${activeTab === "verification"
+          className={`py-4 whitespace-nowrap ${
+            activeTab === "verification"
               ? "text-[#00C2A8] border-b-2 border-[#00C2A8]"
               : "text-gray-400"
-            }`}
+          }`}
         >
           Verification Loops
         </button>
+
       </div>
 
       {/* Console Body */}
-      <div className="bg-[#F9FAFB] dark:bg-[#0F0F0F] 
-                px-6 py-4 flex-1 overflow-y-auto 
-                font-mono text-[14px] 
-                text-gray-800 dark:text-gray-300
-                font-medium leading-7 space-y-3">
+      <div className="flex-1 bg-[#F9FAFB] dark:bg-[#0F0F0F] 
+                      px-4 md:px-6 py-4 overflow-y-auto 
+                      font-mono text-[13px] md:text-[14px] 
+                      text-gray-800 dark:text-gray-300
+                      font-medium leading-7 space-y-3 break-words">
+
         {activeTab === "activity" && (
           <>
             <p>
@@ -93,36 +100,32 @@ export default function ConsolePanel() {
 
             <p>
               <span className="text-gray-400">[09:03:00]</span>{" "}
-              Great! I found a login page for a Help Desk Platform. I can see a useful comment:{" "}
+              Great! I found a login page for a Help Desk Platform. I can see a useful comment:
               <span className="text-[#00C2A8]">
-                "TODO: Delete the testing account (test:test)"
-              </span>. Let me test this credential. The login redirects to{" "}
-              <span className="bg-[#1E293B] dark:bg-[#1E293B] text-white px-3 py-1 rounded-full text-xs font-medium">
-                /password/test
-              </span>. Let me follow that path and explore it.
+                {" "} "TODO: Delete the testing account (test:test)"
+              </span>. Let me test this credential.
             </p>
 
             <p>
               <span className="text-gray-400">[09:04:00]</span>{" "}
-              The POST method is not allowed on /password/test. Let me check what the JavaScript does - it posts to{" "}
-              <span className="text-[#00C2A8]">"#"</span> which means the current page. Let me try a different approach.
+              The POST method is not allowed on /password/test.
             </p>
 
             <p>
               <span className="text-gray-400">[09:05:00]</span>{" "}
-              It redirects back to /password/test. Let me check if there's an /api endpoint or look for other paths. Let me also try exploring with the{" "}
-              <span className="text-[#00C2A8]">test:test</span> password directly on other endpoints.
+              Exploring other endpoints with test:test credentials.
             </p>
 
             <p>
               <span className="text-gray-400">[09:06:00]</span>{" "}
-              Great! I can access the dashboard using the{" "}
-              <span className="bg-cyan-100 dark:bg-cyan-900 text-cyan-700 dark:text-cyan-300 px-2 py-1 rounded">
-                'X-UserId: 10032'
-              </span> header. The dashboard shows "Welcome, John Doe". This suggests an{" "}
-              <span className="text-red-500 font-semibold">
+              Dashboard accessed using
+              <span className="bg-cyan-100 dark:bg-cyan-900 text-cyan-700 dark:text-cyan-300 px-2 py-1 rounded ml-2">
+                X-UserId: 10032
+              </span>
+              . Possible
+              <span className="text-red-500 font-semibold ml-1">
                 IDOR vulnerability
-              </span> - I can access any user's dashboard by just changing the X-UserId header. Let me explore more of the application...
+              </span>.
             </p>
           </>
         )}

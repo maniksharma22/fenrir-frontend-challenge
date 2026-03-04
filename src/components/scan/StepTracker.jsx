@@ -68,10 +68,10 @@ export default function StepTracker({ currentStep = 0 }) {
   }
 
   return (
-    <div className="relative flex items-center justify-between">
+    <div className="relative flex items-center justify-between w-full">
 
-      {/* Single continuous background line */}
-      <div className="absolute top-[32px] left-[-20px] h-[2px] bg-[#C9D2DD] z-0 w-[1020px]" />
+      {/* Responsive progress line */}
+      <div className="absolute top-[32px] left-0 right-0 h-[2px] bg-[#C9D2DD] z-0" />
 
       {steps.map((step, index) => {
         const isActive = index === currentStep
@@ -80,16 +80,18 @@ export default function StepTracker({ currentStep = 0 }) {
           <div key={index} className="relative z-10 flex flex-col items-center">
 
             <div
-              className={`w-[64px] h-[64px] rounded-full flex items-center justify-center
-              ${isActive
-                ? "bg-[#1FA8A5] shadow-[0_0_0_20px_rgba(31,168,165,0.08)]"
-                : "bg-white border-2 border-[#DCE3EA]"}`}
+              className={`w-[56px] h-[56px] md:w-[64px] md:h-[64px] rounded-full flex items-center justify-center
+              ${
+                isActive
+                  ? "bg-[#1FA8A5] shadow-[0_0_0_16px_rgba(31,168,165,0.08)] md:shadow-[0_0_0_20px_rgba(31,168,165,0.08)]"
+                  : "bg-white border-2 border-[#DCE3EA]"
+              }`}
             >
               {renderIcon(step.type, isActive)}
             </div>
 
             <span
-              className={`mt-4 text-[15px] ${
+              className={`mt-3 md:mt-4 text-[13px] md:text-[15px] ${
                 isActive
                   ? "text-[#8F96A3] font-medium"
                   : "text-[#B9C1CA]"

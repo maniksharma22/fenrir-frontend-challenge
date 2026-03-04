@@ -1,7 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+
 import Login from "./pages/Login"
 import Dashboard from "./pages/Dashboard"
 import ScanDetail from "./pages/ScanDetail"
+
 import AuthLayout from "./layouts/AuthLayout"
 import AppLayout from "./layouts/AppLayout"
 
@@ -9,6 +11,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+
+        {/* Login */}
         <Route
           path="/"
           element={
@@ -18,6 +22,7 @@ function App() {
           }
         />
 
+        {/* Dashboard */}
         <Route
           path="/dashboard"
           element={
@@ -27,6 +32,7 @@ function App() {
           }
         />
 
+        {/* Scan Detail */}
         <Route
           path="/scan/:scanId"
           element={
@@ -35,6 +41,7 @@ function App() {
             </AppLayout>
           }
         />
+
       </Routes>
     </BrowserRouter>
   )
