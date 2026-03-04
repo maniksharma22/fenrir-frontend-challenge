@@ -1,31 +1,80 @@
+import {
+  IconSearch,
+  IconAdjustmentsHorizontal,
+  IconLayoutColumns,
+  IconPlus,
+  IconX
+} from "@tabler/icons-react"
+
 export default function DashboardToolbar({ search, setSearch }) {
   return (
-    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-white dark:bg-darkSurface p-4 rounded-xl shadow-sm">
-      
-      <input
-        type="text"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        placeholder="Search scans by name or type..."
-        className="w-full md:w-80 px-4 py-3 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-darkBg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary"
-      />
+    <div className="px-4 md:px-8 pt-4 pb-0">
 
-      <div className="flex items-center gap-3">
-        
-        <button className="px-4 py-2 rounded-lg border border-border-light dark:border-border-dark hover:bg-gray-50 dark:hover:bg-[#242424] transition">
-          Filter
-        </button>
+      <div className="flex flex-col md:flex-row md:items-center gap-4">
 
-        <button className="px-4 py-2 rounded-lg border border-border-light dark:border-border-dark hover:bg-gray-50 dark:hover:bg-[#242424] transition">
-          Column
-        </button>
+        {/* Search */}
+        <div className="relative flex-1">
 
-        <button className="px-4 py-2 rounded-lg bg-primary text-white font-medium hover:opacity-90 transition">
-          New Scan
-        </button>
+          <IconSearch
+            size={18}
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-[#9CA3AF]"
+          />
+
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search scans by name or type..."
+            className="w-full pl-11 pr-10 py-3 rounded-xl
+                       border border-[#E5E7EB] dark:border-[#2A2A2A]
+                       bg-[#F9FAFB] dark:bg-[#1A1A1A]
+                       text-sm text-[#111827] dark:text-white
+                       focus:outline-none
+                       focus:ring-2 focus:ring-[#0CC8A8]/20"
+          />
+
+          {/* Clear icon */}
+          {search && (
+            <IconX
+              size={16}
+              onClick={() => setSearch("")}
+              className="absolute right-3 top-1/2 -translate-y-1/2
+                         cursor-pointer text-[#9CA3AF] hover:text-gray-600"
+            />
+          )}
+
+        </div>
+
+        {/* Buttons */}
+        <div className="flex flex-wrap items-center gap-3">
+
+          <button className="flex items-center gap-2 px-4 py-2 rounded-xl 
+                             border border-[#E5E7EB] dark:border-[#2A2A2A]
+                             bg-white dark:bg-[#1A1A1A]
+                             text-[#6B7280] dark:text-gray-300
+                             text-sm hover:bg-[#F9FAFB] dark:hover:bg-[#222]">
+            <IconAdjustmentsHorizontal size={16} stroke={1.6} />
+            Filter
+          </button>
+
+          <button className="flex items-center gap-2 px-4 py-2 rounded-xl 
+                             border border-[#E5E7EB] dark:border-[#2A2A2A]
+                             bg-white dark:bg-[#1A1A1A]
+                             text-[#6B7280] dark:text-gray-300
+                             text-sm hover:bg-[#F9FAFB] dark:hover:bg-[#222]">
+            <IconLayoutColumns size={16} stroke={1.6} />
+            Column
+          </button>
+
+          <button className="flex items-center gap-2 px-5 py-2 rounded-xl 
+                             bg-[#0CC8A8] text-white text-sm hover:bg-[#0BB79A]">
+            <IconPlus size={16} />
+            New Scan
+          </button>
+
+        </div>
 
       </div>
-
     </div>
   )
 }

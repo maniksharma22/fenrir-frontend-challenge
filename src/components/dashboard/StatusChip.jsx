@@ -1,14 +1,14 @@
 export default function StatusChip({ status }) {
   const base =
-    "px-3 py-1 rounded-full text-xs font-medium inline-block"
+    "px-3 py-1 rounded-md text-xs font-medium inline-block"
 
   const styles = {
     Completed:
-      "bg-severity-low/10 text-severity-low",
+      "bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400",
     Scheduled:
-      "bg-gray-400/10 text-gray-500 dark:text-gray-400",
+      "bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-300",
     Failed:
-      "bg-severity-critical/10 text-severity-critical",
+      "bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400",
   }
 
   return (

@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom"
 import { scans } from "../data/scans"
+import { IconHome } from "@tabler/icons-react"
+import { IconHome2 } from "@tabler/icons-react"
 
 import ProgressSection from "../components/scan/ProgressSection"
 import MetadataRow from "../components/scan/MetadataRow"
@@ -16,26 +18,74 @@ export default function ScanDetail() {
 
   if (!scan) {
     return (
-      <div className="text-red-500">
+      <div className="p-6 text-red-500">
         Scan not found
       </div>
     )
   }
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="p-6 bg-gray-100 dark:bg-[#0F0F0F] min-h-screen flex flex-col gap-6">
 
-      <ProgressSection progress={scan.progress} />
+      {/* TOP BAR */}
+      <div className="flex items-center justify-between">
 
-      <MetadataRow scan={scan} />
+        {/* Breadcrumb */}
+        <div className="flex items-center gap-3 text-[15px]">
+          <span className="font-semibold text-[#111827] dark:text-white">
+            Scan
+          </span>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2">
+          <IconHome2 size={16} className="text-[#9CA3AF]" />
+
+          <span className="text-[#9CA3AF] mx-2">/</span>
+
+          <span className="text-[#6B7280] dark:text-gray-400">
+            Private Assets
+          </span>
+
+          <span className="text-[#9CA3AF] mx-2">/</span>
+
+          <span className="text-[#0CC8A8] font-medium">
+            New Scan
+          </span>
+        </div>
+
+        {/* Right Buttons */}
+        <div className="flex gap-3">
+          <button className="px-4 py-2 text-sm border border-gray-300 dark:border-[#2A2A2A] rounded-lg">
+            Export Report
+          </button>
+
+          <button className="px-4 py-2 text-sm bg-red-500 text-white rounded-lg">
+            Stop Scan
+          </button>
+        </div>
+
+      </div>
+
+      {/* TOP UNIFIED CARD */}
+      <div className="bg-[#F8FAFC] dark:bg-[#141414] rounded-2xl p-6 flex flex-col gap-6 border border-gray-200 dark:border-[#2A2A2A]">
+
+        <ProgressSection progress={scan.progress} />
+
+        <MetadataRow scan={scan} />
+
+      </div>
+
+      {/* CONSOLE + FINDING SECTION */}
+      <div className="bg-white dark:bg-[#141414] rounded-2xl border border-gray-200 dark:border-[#2A2A2A] overflow-hidden flex h-[520px]">
+
+        {/* LEFT SIDE */}
+        <div className="w-2/3 border-r border-gray-200 dark:border-[#2A2A2A]">
           <ConsolePanel />
         </div>
-        <div>
+
+        {/* RIGHT SIDE */}
+        <div className="w-1/3 bg-gray-50 dark:bg-[#1A1A1A]">
           <FindingLog />
         </div>
+
       </div>
 
       <BottomStatusBar />

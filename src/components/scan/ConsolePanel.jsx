@@ -1,54 +1,141 @@
-import StepTracker from "./StepTracker"
+import { useState } from "react"
 
-export default function ProgressSection() {
-  const progress = 35 
-
-  const radius = 36
-  const stroke = 6
-  const normalizedRadius = radius - stroke / 2
-  const circumference = normalizedRadius * 2 * Math.PI
-  const strokeDashoffset =
-    circumference - (progress / 100) * circumference
+export default function ConsolePanel() {
+  const [activeTab, setActiveTab] = useState("activity")
 
   return (
-    <div className="bg-white dark:bg-darkSurface p-6 rounded-xl shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-      
-      {/* Circular Progress */}
-      <div className="flex items-center gap-6">
-        <svg height={radius * 2} width={radius * 2}>
-          <circle
-            stroke="#2A2A2A"
-            fill="transparent"
-            strokeWidth={stroke}
-            r={normalizedRadius}
-            cx={radius}
-            cy={radius}
-          />
-          <circle
-            stroke="#0CC8A8"
-            fill="transparent"
-            strokeWidth={stroke}
-            strokeDasharray={`${circumference} ${circumference}`}
-            style={{ strokeDashoffset }}
-            strokeLinecap="round"
-            r={normalizedRadius}
-            cx={radius}
-            cy={radius}
-            className="transition-all duration-500"
-          />
-        </svg>
+    <div className="h-full bg-white dark:bg-[#141414] transition-colors">
 
-        <div>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            In Progress
-          </p>
-          <p className="text-xl font-bold text-gray-900 dark:text-white">
-            {progress}%
-          </p>
+      {/* Header */}
+      <div className="flex items-center justify-between px-6 py-4 
+                      border-b border-gray-200 dark:border-[#2A2A2A]">
+        <div className="flex items-center gap-3">
+          <span className="w-2 h-2 bg-[#00C2A8] rounded-full"></span>
+
+          <span className="text-sm font-semibold text-gray-900 dark:text-white">
+            Live Scan Console
+          </span>
+
+          <span className="flex items-center gap-2 text-xs 
+                           bg-gray-200 dark:bg-[#1E1E1E] 
+                           text-gray-600 dark:text-gray-400 
+                           px-3 py-1 rounded-full">
+            <svg
+              className="w-3 h-3 text-gray-500 dark:text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 6v6l4 2" />
+            </svg>
+            Running...
+          </span>
         </div>
       </div>
 
-      <StepTracker currentStep={1} />
+      {/* Tabs */}
+      <div className="flex gap-8 px-6 
+                      border-b border-gray-200 dark:border-[#2A2A2A] 
+                      text-sm">
+        <button
+          onClick={() => setActiveTab("activity")}
+          className={`py-4 ${activeTab === "activity"
+            ? "text-[#00C2A8] border-b-2 border-[#00C2A8]"
+            : "text-gray-400"
+            }`}
+        >
+          Activity Log
+        </button>
+
+        <button
+          onClick={() => setActiveTab("verification")}
+          className={`py-4 ${activeTab === "verification"
+              ? "text-[#00C2A8] border-b-2 border-[#00C2A8]"
+              : "text-gray-400"
+            }`}
+        >
+          Verification Loops
+        </button>
+      </div>
+
+      {/* Console Body */}
+      <div className="bg-[#F9FAFB] dark:bg-[#0F0F0F] 
+                px-6 py-4 flex-1 overflow-y-auto 
+                font-mono text-[14px] 
+                text-gray-800 dark:text-gray-300
+                font-medium leading-7 space-y-3">
+        {activeTab === "activity" && (
+          <>
+            <p>
+              <span className="text-gray-400">[09:00:00]</span>{" "}
+              I'll begin a systematic penetration test on{" "}
+              <span className="text-[#00C2A8]">
+                helpdesk.democorp.com
+              </span>. Let me start with reconnaissance and enumeration.
+            </p>
+
+            <p>
+              <span className="text-gray-400">[09:01:00]</span>{" "}
+              Good! target is online. Now let me perform port scanning to identify running services.
+            </p>
+
+            <p>
+              <span className="text-gray-400">[09:02:00]</span>{" "}
+              Excellent reconnaissance results:
+              <span className="relative ml-6 block text-gray-400 pl-4">
+                <span className="absolute left-0 top-0 bottom-0 w-[2px] bg-gray-400"></span>
+                - helpdesk.democorp.com: Apache httpd 2.4.65 on port 80 (web server)
+              </span>
+              Let me probe the web server on target first to understand its structure.
+            </p>
+
+            <p>
+              <span className="text-gray-400">[09:03:00]</span>{" "}
+              Great! I found a login page for a Help Desk Platform. I can see a useful comment:{" "}
+              <span className="text-[#00C2A8]">
+                "TODO: Delete the testing account (test:test)"
+              </span>. Let me test this credential. The login redirects to{" "}
+              <span className="bg-[#1E293B] dark:bg-[#1E293B] text-white px-3 py-1 rounded-full text-xs font-medium">
+                /password/test
+              </span>. Let me follow that path and explore it.
+            </p>
+
+            <p>
+              <span className="text-gray-400">[09:04:00]</span>{" "}
+              The POST method is not allowed on /password/test. Let me check what the JavaScript does - it posts to{" "}
+              <span className="text-[#00C2A8]">"#"</span> which means the current page. Let me try a different approach.
+            </p>
+
+            <p>
+              <span className="text-gray-400">[09:05:00]</span>{" "}
+              It redirects back to /password/test. Let me check if there's an /api endpoint or look for other paths. Let me also try exploring with the{" "}
+              <span className="text-[#00C2A8]">test:test</span> password directly on other endpoints.
+            </p>
+
+            <p>
+              <span className="text-gray-400">[09:06:00]</span>{" "}
+              Great! I can access the dashboard using the{" "}
+              <span className="bg-cyan-100 dark:bg-cyan-900 text-cyan-700 dark:text-cyan-300 px-2 py-1 rounded">
+                'X-UserId: 10032'
+              </span> header. The dashboard shows "Welcome, John Doe". This suggests an{" "}
+              <span className="text-red-500 font-semibold">
+                IDOR vulnerability
+              </span> - I can access any user's dashboard by just changing the X-UserId header. Let me explore more of the application...
+            </p>
+          </>
+        )}
+
+        {activeTab === "verification" && (
+          <>
+            <p>[09:07:00] Verifying discovered vulnerabilities...</p>
+            <p>[09:08:00] Re-testing authentication endpoint...</p>
+            <p>[09:09:00] Confirmed reproducibility of exploit.</p>
+          </>
+        )}
+
+      </div>
 
     </div>
   )

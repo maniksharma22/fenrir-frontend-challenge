@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom"
 import StatusChip from "./StatusChip"
-import SeverityBadge from "./SeverityBadge"
 
 export default function ScanRow({ scan }) {
   const navigate = useNavigate()
@@ -8,32 +7,76 @@ export default function ScanRow({ scan }) {
   return (
     <tr
       onClick={() => navigate(`/scan/${scan.id}`)}
-      className="cursor-pointer border-b border-border-light dark:border-border-dark hover:bg-gray-50 dark:hover:bg-[#242424] transition"
+      className="border-b border-[#E5E7EB] dark:border-[#2A2A2A] 
+                 hover:bg-[#F9FAFB] dark:hover:bg-[#1B1B1B] 
+                 transition cursor-pointer"
     >
-      <td className="p-4 font-medium text-gray-900 dark:text-white">
+      {/* Name */}
+      <td className="px-8 py-6 font-medium text-[#111827] dark:text-white">
         {scan.name}
       </td>
 
-      <td className="p-4 text-gray-500 dark:text-gray-400">
+      {/* Type */}
+      <td className="px-8 py-6 text-[#6B7280] dark:text-[#9CA3AF]">
         {scan.type}
       </td>
 
-      <td className="p-4">
+      {/* Status */}
+      <td className="px-8 py-6">
         <StatusChip status={scan.status} />
       </td>
 
-      <td className="p-4">
-        {scan.progress}%
+      {/* Progress */}
+      <td className="px-8 py-6">
+        <div className="flex items-center gap-4">
+          <div className="w-32 h-2.5 bg-[#E5E7EB] dark:bg-[#2A2A2A] rounded-full">
+            <div
+              className={`h-2.5 rounded-full ${
+                scan.status === "Failed"
+                  ? "bg-red-500"
+                  : "bg-[#1F9D94]"
+              }`}
+              style={{ width: `${scan.progress}%` }}
+            />
+          </div>
+
+          <span className="text-sm font-medium text-[#374151] dark:text-[#D1D5DB]">
+            {scan.progress}%
+          </span>
+        </div>
       </td>
 
-      <td className="p-4 flex gap-2">
-        <SeverityBadge value={scan.vulnerabilities.critical} type="critical" />
-        <SeverityBadge value={scan.vulnerabilities.high} type="high" />
-        <SeverityBadge value={scan.vulnerabilities.medium} type="medium" />
-        <SeverityBadge value={scan.vulnerabilities.low} type="low" />
+      {/* Vulnerabilities */}
+      <td className="px-8 py-6 text-center">
+        <div className="flex gap-3 justify-center">
+          {scan.vulnerabilities.critical > 0 && (
+            <span className="px-3 py-1 text-xs font-semibold text-white bg-red-500 rounded-md">
+              {scan.vulnerabilities.critical}
+            </span>
+          )}
+
+          {scan.vulnerabilities.high > 0 && (
+            <span className="px-3 py-1 text-xs font-semibold text-white bg-orange-500 rounded-md">
+              {scan.vulnerabilities.high}
+            </span>
+          )}
+
+          {scan.vulnerabilities.medium > 0 && (
+            <span className="px-3 py-1 text-xs font-semibold text-white bg-yellow-500 rounded-md">
+              {scan.vulnerabilities.medium}
+            </span>
+          )}
+
+          {scan.vulnerabilities.low > 0 && (
+            <span className="px-3 py-1 text-xs font-semibold text-white bg-green-500 rounded-md">
+              {scan.vulnerabilities.low}
+            </span>
+          )}
+        </div>
       </td>
 
-      <td className="p-4 text-gray-500 dark:text-gray-400">
+      {/* Last Scan */}
+      <td className="px-8 py-6 text-[#6B7280] dark:text-[#9CA3AF]">
         {scan.lastScan}
       </td>
     </tr>

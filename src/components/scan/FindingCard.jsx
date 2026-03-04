@@ -6,39 +6,39 @@ export default function FindingCard({
   time,
 }) {
   const severityStyles = {
-    Critical: "bg-severity-critical/10 text-severity-critical",
-    High: "bg-severity-high/10 text-severity-high",
-    Medium: "bg-severity-medium/10 text-severity-medium",
+    Critical: "bg-red-100 text-red-600",
+    High: "bg-orange-100 text-orange-600",
+    Medium: "bg-yellow-100 text-yellow-600",
   }
 
   return (
-    <div className="border border-border-light dark:border-border-dark p-4 rounded-xl space-y-3 hover:shadow-md transition">
-      
+    <div className="border border-gray-200 rounded-lg p-3 space-y-2">
+
       {/* Top Row */}
       <div className="flex items-center justify-between">
         <span
-          className={`px-2 py-1 text-xs font-semibold rounded ${severityStyles[severity]}`}
+          className={`px-2 py-[2px] text-[11px] font-medium rounded ${severityStyles[severity]}`}
         >
           {severity}
         </span>
 
-        <span className="text-xs text-gray-500 dark:text-gray-400">
+        <span className="text-[11px] text-gray-400">
           {time}
         </span>
       </div>
 
       {/* Title */}
-      <p className="font-semibold text-gray-900 dark:text-white">
+      <p className="text-sm font-semibold text-gray-900">
         {title}
       </p>
 
       {/* Endpoint */}
-      <p className="text-sm text-primary font-mono">
+      <p className="text-xs text-[#00C2A8] font-mono">
         {endpoint}
       </p>
 
       {/* Description */}
-      <p className="text-sm text-gray-600 dark:text-gray-400">
+      <p className="text-xs text-gray-500 leading-relaxed">
         {description}
       </p>
 

@@ -2,23 +2,32 @@ import ScanRow from "./ScanRow"
 
 export default function ScanTable({ scans }) {
   return (
-    <div className="bg-white dark:bg-darkSurface rounded-xl shadow-sm overflow-x-auto">
+    <div className="bg-white dark:bg-[#141414] 
+                    rounded-2xl 
+                    border border-[#E5E7EB] dark:border-[#2A2A2A] 
+                    overflow-hidden">
+
       <table className="w-full text-left">
-        <thead className="border-b border-border-light dark:border-border-dark">
-          <tr className="text-sm text-gray-500 dark:text-gray-400">
-            <th className="p-4">Scan Name</th>
-            <th className="p-4">Type</th>
-            <th className="p-4">Status</th>
-            <th className="p-4">Progress</th>
-            <th className="p-4">Vulnerability</th>
-            <th className="p-4">Last Scan</th>
+
+        <thead className="bg-[#F9FAFB] dark:bg-[#1A1A1A] 
+                          border-b border-[#E5E7EB] dark:border-[#2A2A2A]">
+          <tr className="text-sm text-[#6B7280] dark:text-gray-400">
+            <th className="px-8 py-4 font-medium">Scan Name</th>
+            <th className="px-8 py-4 font-medium">Type</th>
+            <th className="px-8 py-4 font-medium">Status</th>
+            <th className="px-8 py-4 font-medium">Progress</th>
+            <th className="px-8 py-4 font-medium">Vulnerability</th>
+            <th className="px-8 py-4 font-medium">Last Scan</th>
           </tr>
         </thead>
 
-        <tbody>
+        <tbody className="bg-white dark:bg-[#141414] text-[#111827] dark:text-white">
           {scans.length === 0 ? (
             <tr>
-              <td colSpan="6" className="p-6 text-center text-gray-500 dark:text-gray-400">
+              <td
+                colSpan="6"
+                className="px-8 py-8 text-center text-[#6B7280] dark:text-gray-400"
+              >
                 No scans found.
               </td>
             </tr>
@@ -28,6 +37,7 @@ export default function ScanTable({ scans }) {
             ))
           )}
         </tbody>
+
       </table>
     </div>
   )
